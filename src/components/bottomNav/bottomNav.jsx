@@ -1,17 +1,17 @@
-import { Epic, Tabbar, TabbarItem } from '@vkontakte/vkui'
+import { Epic, Tabbar, TabbarItem, PopoutWrapper } from '@vkontakte/vkui'
 import React, { Component } from 'react'
 
 // Import icons
-import Icon28GridSquareOutline  from '@vkontakte/icons/dist/28/grid_square_outline';
+import Icon28GridSquareOutline from '@vkontakte/icons/dist/28/grid_square_outline';
 import Icon28CheckSquareOutline from '@vkontakte/icons/dist/28/check_square_outline';
-import Icon28CalendarOutline    from '@vkontakte/icons/dist/28/calendar_outline';
-import Icon28UserCircleOutline  from '@vkontakte/icons/dist/28/user_circle_outline';
+import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
+import Icon28UserCircleOutline from '@vkontakte/icons/dist/28/user_circle_outline';
 
 // Import pages
-import JournalPage  from '../journalPage'
-import CheckPage    from '../checkPage'
+import JournalPage from '../journalPage'
+import CheckPage from '../checkPage'
 import CalendarPage from '../calendarPage'
-import ProfilePage  from '../profilePage'
+import ProfilePage from '../profilePage'
 
 export default class BottomNav extends Component {
 
@@ -70,14 +70,17 @@ export default class BottomNav extends Component {
             )
         })
         return (
-            <Epic activeStory={activeStory} tabbar={
-                <Tabbar>
-                    {tabs}
-                </Tabbar>
-            }>
-                {/* Список страниц переданных через объект */}
-                { this.pages.map((e, i) => React.cloneElement(e.view, {key: i, id: e.story})) }
-            </Epic>
+            <PopoutWrapper alignY="center" alignX="center">
+                <Epic activeStory={activeStory} tabbar={
+                    <Tabbar>
+                        {tabs}
+                    </Tabbar>
+                }>
+                    {/* Список страниц переданных через объект */}
+                    {this.pages.map((e, i) => React.cloneElement(e.view, { key: i, id: e.story }))}
+                </Epic>
+
+            </PopoutWrapper>
         )
     }
 }
