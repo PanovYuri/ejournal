@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
-import { ActionSheet, ActionSheetItem, Panel, PanelHeader, View, IOS, platform, Button } from '@vkontakte/vkui'
+import { ActionSheet, ActionSheetItem, Panel, PanelHeader, View, IOS, platform } from '@vkontakte/vkui'
+import { Icon28CalendarOutline } from '@vkontakte/icons'
 
 export default class JournalPage extends Component {
 
     state = {
         popout: null,
+        selectedGroup: {
+            date: '27.10.2020',
+            group: '16И-1',
+
+        }
     }
 
     openActions = () => {
@@ -29,8 +35,9 @@ export default class JournalPage extends Component {
         return (
             <View activePanel='feed' popout={this.state.popout}>
                 <Panel id='feed'>
-                    <PanelHeader>Журнал</PanelHeader>
-                    <Button onClick={this.openActions}>Open actions</Button>
+                    <PanelHeader
+                        right={<Icon28CalendarOutline onClick={this.openActions} />}
+                        >{this.state.selectedGroup.group}</PanelHeader>
                 </Panel>
             </View>
         )
